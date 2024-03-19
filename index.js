@@ -7,10 +7,11 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
+  let ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
   res.json({
     message: "Secure pass backend listening to requests",
     time: new Date().toISOString(),
-    ip: req.ip,
+    ip: ip,
   });
 });
 
