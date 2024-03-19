@@ -7,7 +7,11 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Secure pass backend listening for requests!");
+  res.json({
+    message: "Secure pass backend listening to requests",
+    time: new Date().toISOString(),
+    ip: req.ip,
+  });
 });
 
 app.post("/login", (req, res) => {
